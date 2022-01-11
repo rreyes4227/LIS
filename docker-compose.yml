@@ -2,11 +2,13 @@ version: "3.8"
 services:
   web:
     build: ./lis
+    command: flask run
     volumes:
       - ./lis/:/usr/src/lis/
     ports:
       - 5000:5000
-
+    depends_on:
+      - pg
     environment:
       - DB_NAME=lis_db
       - DB_USER=postgres
@@ -14,8 +16,7 @@ services:
       - DB_HOST=pg
       - DB_PORT=5432
       - DATABASE=postgres
-    depends_on:
-      - pg
+
   pg:
     container_name: pg_container
     image: postgres:13.2-alpine
