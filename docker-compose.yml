@@ -2,7 +2,6 @@ version: "3.8"
 services:
   web:
     build: ./lis
-    command: flask run
     volumes:
       - ./lis/:/usr/src/lis/
     ports:
